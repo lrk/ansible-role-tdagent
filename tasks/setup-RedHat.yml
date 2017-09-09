@@ -1,0 +1,17 @@
+---
+#RedHat specific tasks
+
+- name: "Ensure Treasure Data repository exists"
+  yum_repository:
+    name: treasuredata
+    description: "Treasure Data Repository"
+    baseurl: "http://packages.treasuredata.com/2/redhat/$releasever/$basearch"
+    gpgkey: "https://packages.treasuredata.com/GPG-KEY-td-agent"
+    gpgcheck: yes
+    state: present
+
+- name: "Ensure packages are installed"
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ __tdagent_packages }}"

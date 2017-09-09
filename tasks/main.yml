@@ -1,2 +1,47 @@
 ---
 # tasks file for ansible-tdagent
+
+# Setup/install tasks.
+- include: "setup-{{ ansible_os_family }}.yml"
+  static: no
+
+
+
+- name: "Ensure configuration directory exist for conf.d"
+  file:
+    path: "{{ tdagent_confd_dir }}"
+    state: directory
+    owner: "{{ tdagent_user }}"
+    group: "{{ tdagent_group }}"
+
+- name: "Ensure base configuration is set"
+  template:
+    src: td-agent.conf.j2
+    dest: "{{ tdagent_conf_dir }}/td-agent.conf"
+    owner: "{{ tdagent_user }}"
+    group: "{{ tdagent_group }}"
+  notify:
+    - reload td-agent
+
+- name: "Ensure user defined templates are set"
+  template:
+    src: "{{ playbbook_dir }}/{{ item.src }}"
+    dest: "{{ tdagent_confd_dir }}/{{ item.dest }}"
+    owner: "{{ tdagent_user }}"
+    group: "{{ tdagent_group }}"
+  with_items: "{{ tdagent_confd_templates }}"
+  when: tdagent_confd_templates is defined
+  notify:
+    - reload td-agent
+
+# GEM installed on:
+#   /opt/td-agent/embedded/lib/ruby/gems/2.1.0/gems/
+- name: "Ensure user plugins are installed"
+  gem:
+      name: "{{ item }}"
+      executable: "{{ __tdagent_gem_exe }}"
+      state: latest
+      user_install: no
+  with_items: "{{ tdagent_plugins | default([]) }}"
+  notify:
+    - restart td-agent
