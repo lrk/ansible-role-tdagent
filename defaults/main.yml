@@ -7,9 +7,9 @@ tdagent_group: td-agent
 
 # Directory for conf.d configurations
 tdagent_conf_dir: "/etc/td-agent"
-tdagent_confd_dir: "/{{ tdagent_conf_dir }}/conf.d"
+tdagent_confd_dir: "{{ tdagent_conf_dir }}/conf.d"
 
-# List of user defined templates files, path relative to playbook_dir 
+# List of user defined templates files, path relative to playbook_dir
 tdagent_confd_templates: []
 
 # Enable forwarding
