@@ -22,7 +22,7 @@
     #bind {{ tdagent_http_input_bind | default('0.0.0.0') }}
     #keepalive_timeout {{ tdagent_http_input_keepalive_timeout | default('10s') }}
 </source>
-
+{% endif %}
 
 {% if tdagent_monitor_agent_enabled == true %}
 # Monitoring Agent: retrieve internal metrics in JSON via HTTP
