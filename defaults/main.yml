@@ -12,6 +12,9 @@ tdagent_confd_dir: "{{ tdagent_conf_dir }}/conf.d"
 # List of user defined templates files, path relative to playbook_dir
 tdagent_confd_templates: []
 
+# List of plugins to install
+tdagent_plugins: []
+
 # Enable forwarding
 tdagent_forward_enabled: true
 tdagent_forward_bind: 0.0.0.0

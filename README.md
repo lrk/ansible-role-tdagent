@@ -36,6 +36,14 @@ tdagent_confd_templates: []                 # dictionnary (src,dest) containing 
 #   - { src: "path/to/my/template.confj2", dest: "myconf.conf"}
 #   - ...
 
+# List of plugins names to install
+tdagent_plugins: []
+# Example:
+# tdagent_plugins:
+#     - fluent-plugin-secure-forward
+#     - fluent-plugin-elasticsearch
+#     - fluent-plugin-multiprocess
+
 # Enable forwarding
 tdagent_forward_enabled: true               # enable/disable event forwarding configuration  
 tdagent_forward_bind: 0.0.0.0               # bind interface       

@@ -5,6 +5,8 @@
 - include: "setup-{{ ansible_os_family }}.yml"
   static: no
 
+
+
 - name: "Ensure configuration directory exist for conf.d"
   file:
     path: "{{ tdagent_confd_dir }}"
@@ -31,3 +33,15 @@
   when: tdagent_confd_templates is defined
   notify:
     - reload td-agent
+
+# GEM installed on:
+#   /opt/td-agent/embedded/lib/ruby/gems/2.1.0/gems/
+- name: "Ensure user plugins are installed"
+  gem:
+      name: "{{ item }}"
+      executable: "{{ __tdagent_gem_exe }}"
+      state: latest
+      user_install: no
+  with_items: "{{ tdagent_plugins | default([]) }}"
+  notify:
+    - restart td-agent

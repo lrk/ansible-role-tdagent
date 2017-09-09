@@ -1,5 +1,11 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+    - tdagent_plugins:
+        - fluent-plugin-secure-forward
+        - fluent-plugin-elasticsearch
+        - fluent-plugin-multiprocess
+        
   roles:
     - role_under_test

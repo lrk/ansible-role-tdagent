@@ -3,3 +3,5 @@
 
 __tdagent_packages:
   - td-agent
+
+__tdagent_gem_exe: "/opt/td-agent/embedded/bin/fluent-gem"

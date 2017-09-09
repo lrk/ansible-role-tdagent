@@ -2,6 +2,11 @@
 - hosts: localhost
   remote_user: root
   become: true
+  vars:
+    - tdagent_plugins:
+        - fluent-plugin-secure-forward
+        - fluent-plugin-elasticsearch
+        - fluent-plugin-multiprocess
   pre_tasks:
     - name: "Informations"
       debug:
