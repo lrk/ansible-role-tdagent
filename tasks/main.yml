@@ -1,2 +1,6 @@
 ---
 # tasks file for ansible-tdagent
+
+# Setup/install tasks.
+- include: "setup-{{ ansible_os_family }}.yml"
+  static: no
