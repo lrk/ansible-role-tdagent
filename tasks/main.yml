@@ -1,6 +1,37 @@
 ---
 # tasks file for ansible-tdagent
 
+# Include variables and define needed variables.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
 # Setup/install tasks.
 - include: "setup-{{ ansible_os_family }}.yml"
   static: no
+
+- name: "Ensure configuration directory exist for conf.d"
+  file:
+    path: "{{ tdagent_confd_dir }}"
+    state: directory
+    owner: "{{ tdagent_user }}"
+    group: "{{ tdagent_group }}"
+
+- name: "Ensure base configuration is set"
+  template:
+    src: td-agent.conf.j2
+    dest: "{{ tdagent_conf_dir }}/td-agent.conf"
+    owner: "{{ tdagent_user }}"
+    group: "{{ tdagent_group }}"
+  notify:
+    - reload td-agent
+
+- name: "Ensure user defined templates are set"
+  template:
+    src: "{{ playbbook_dir }}/{{ item.src }}"
+    dest: "{{ tdagent_confd_dir }}/{{ item.dest }}"
+    owner: "{{ tdagent_user }}"
+    group: "{{ tdagent_group }}"
+  with_dicts: tdagent_confd_templates
+  when: tdagent_confd_templates is defined
+  notify:
+    - reload td-agent

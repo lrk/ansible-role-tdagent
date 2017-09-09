@@ -1,0 +1,39 @@
+#
+# Simple default td-agent.conf
+# For more details, see http://docs.fluentd.org/articles/config-file
+#
+
+{% if tdagent_forward_enabled == true %}
+# built-in TCP input to receive event logs
+# @see http://docs.fluentd.org/articles/in_forward
+<source>
+    @type forward
+    #port {{ tdagent_forward_port | default('24224') }}
+    #bind {{ tdagent_forward_bind | default('0.0.0.0') }}
+</source>
+{% endif %}
+
+{% if tdagent_http_input_enabled == true %}
+# HTTP input via POST
+# @see http://docs.fluentd.org/articles/in_http
+<source>
+    @type http
+    #port {{ tdagent_http_input_port | default('9880') }}
+    #bind {{ tdagent_http_input_bind | default('0.0.0.0') }}
+    #keepalive_timeout {{ tdagent_http_input_keepalive_timeout | default('10s') }}
+</source>
+
+
+{% if tdagent_monitor_agent_enabled == true %}
+# Monitoring Agent: retrieve internal metrics in JSON via HTTP
+# @see http://docs.fluentd.org/articles/monitoring
+<source>
+    @type monitor_agent
+    #bind {{ tdagent_monitor_agent_bind | default('0.0.0.0') }}
+    #port {{ tdagent_monitor_agent_port | default('24220') }}
+</source>
+{% endif %}
+
+{% if tdagent_confd_dir is defined %}
+@include {{ tdagent_confd_dir }}/*.conf
+{% endif %}

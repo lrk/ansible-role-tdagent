@@ -1,2 +1,29 @@
 ---
 # defaults file for ansible-tdagent
+
+# User and group
+tdagent_user: td-agent
+tdagent_group: td-agent
+
+# Directory for conf.d configurations
+tdagent_conf_dir: "/etc/td-agent"
+tdagent_confd_dir: "/{{ tdagent_conf_dir }}/conf.d"
+
+# List of user defined templates files, path relative to playbook_dir 
+tdagent_confd_templates: []
+
+# Enable forwarding
+tdagent_forward_enabled: true
+tdagent_forward_bind: 0.0.0.0
+tdagent_forward_port: 24224
+
+# Enable HTTP input via POST
+tdagent_http_input_enabled: true
+tdagent_http_input_bind: 0.0.0.0
+tdagent_http_input_port: 9880
+tdagent_http_input_keepalive_timeout: 10s
+
+# Enable Monitoring Agent: retrieve internal metrics in JSON via HTTP
+tdagent_monitor_agent_enabled: true
+tdagent_monitor_agent_bind: 0.0.0.0
+tdagent_monitor_agent_port: 24220

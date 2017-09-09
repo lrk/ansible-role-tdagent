@@ -1,2 +1,5 @@
 ---
 # vars file for ansible-tdagent
+
+__tdagent_packages:
+  - tdagend
