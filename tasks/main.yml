@@ -25,7 +25,7 @@
 
 - name: "Ensure user defined templates are set"
   template:
-    src: "{{ playbbook_dir }}/{{ item.src }}"
+    src: "{{ playbook_dir }}/{{ item.src }}"
     dest: "{{ tdagent_confd_dir }}/{{ item.dest }}"
     owner: "{{ tdagent_user }}"
     group: "{{ tdagent_group }}"
