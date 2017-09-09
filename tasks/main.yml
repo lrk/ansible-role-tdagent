@@ -27,7 +27,7 @@
     dest: "{{ tdagent_confd_dir }}/{{ item.dest }}"
     owner: "{{ tdagent_user }}"
     group: "{{ tdagent_group }}"
-  with_items: tdagent_confd_templates
+  with_items: "{{ tdagent_confd_templates }}"
   when: tdagent_confd_templates is defined
   notify:
     - reload td-agent
