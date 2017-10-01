@@ -2,10 +2,16 @@
 # handlers file for ansible-tdagent
 
 - name: reload td-agent
-  service: name=td-agent state=reloaded
+  service:
+    name: td-agent
+    state: reloaded
 
 - name: restart td-agent
-  service: name=td-agent state=restarted
+  service:
+    name: td-agent
+    state: restarted
 
 - name: stop td-agent
-  service: name=td-agent state=stopped
+  service:
+    name: td-agent
+    state: stopped
