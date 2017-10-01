@@ -1,6 +1,6 @@
 Ansible Role: Treasure Data td-agent ([lrk.tdagent](https://galaxy.ansible.com/lrk/td-agent/))
 =========
-[![Build Status](https://travis-ci.org/lrk/ansible-tdagent.svg?branch=master)](https://travis-ci.org/lrk/ansible-tdagent)
+[![Build Status](https://travis-ci.org/lrk/ansible-role-tdagent.svg?branch=master)](https://travis-ci.org/lrk/ansible-role-tdagent)
 
 An Ansible Role that install the Server-Side Agent called Treasure Agent (td-agent), to collect server-side logs and events.
 
