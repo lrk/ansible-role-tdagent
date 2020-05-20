@@ -23,6 +23,9 @@ Role Variables
 Available variables along with default values are listed below (see `defaults/main.yml`)
 ```yml
 
+# td-agent version
+td_agent_version: 3                      # version e.g 2 ,3 ..
+
 # User and group
 tdagent_user: td-agent                      # user name
 tdagent_group: td-agent                     # group name
