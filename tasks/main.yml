@@ -2,8 +2,7 @@
 # tasks file for ansible-tdagent
 
 # Setup/install tasks.
-- include: "setup-{{ ansible_os_family }}.yml"
-  static: no
+- include_tasks: "setup-{{ ansible_os_family }}.yml"
 
 - name: "Ensure configuration directory exist for conf.d"
   file:
