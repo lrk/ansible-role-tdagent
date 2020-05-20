@@ -1,6 +1,9 @@
 ---
 # defaults file for ansible-tdagent
 
+# td-agent version e.g 2 ,3 ..
+td_agent_version: 3
+
 # User and group
 tdagent_user: td-agent
 tdagent_group: td-agent
