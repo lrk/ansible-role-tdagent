@@ -5,13 +5,12 @@
   yum_repository:
     name: treasuredata
     description: "Treasure Data Repository"
-    baseurl: "http://packages.treasuredata.com/2/redhat/$releasever/$basearch"
+    baseurl: "http://packages.treasuredata.com/{{ td_agent_repository_major_version }}/redhat/$releasever/$basearch"
     gpgkey: "https://packages.treasuredata.com/GPG-KEY-td-agent"
     gpgcheck: yes
     state: present
 
 - name: "Ensure packages are installed"
   yum:
-    name: "{{ item }}"
+    name: "{{ __tdagent_packages }}"
     state: present
-  with_items: "{{ __tdagent_packages }}"
