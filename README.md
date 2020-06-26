@@ -23,8 +23,8 @@ Role Variables
 Available variables along with default values are listed below (see `defaults/main.yml`)
 ```yml
 
-# td-agent version
-td_agent_version: 3                      # version e.g 2 ,3 ..
+# td-agent major version
+td_agent_repository_major_version: 3                      # version e.g 2 ,3 ..
 
 # User and group
 tdagent_user: td-agent                      # user name
